@@ -12,3 +12,4 @@ columns = ["source", "name", "link", "source", "salary_min", "salary_max", "sala
 
 data_frame = pd.DataFrame({column : [vacancy[column] for vacancy in vacancy_list] for column in columns})
 print(data_frame.info())
+data_frame.to_csv("homework_2_vacancies.csv")
