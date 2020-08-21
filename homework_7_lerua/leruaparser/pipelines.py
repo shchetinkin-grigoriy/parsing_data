@@ -24,7 +24,6 @@ class LeruaparserPipeline:
 
 class LeruaparserPhoptosPipeline(ImagesPipeline):
 
-    #точка входа – она и производит скачивание картинки
     def get_media_requests(self, item, info):
         if item['photos']:
             for img in item['photos']:
@@ -33,7 +32,6 @@ class LeruaparserPhoptosPipeline(ImagesPipeline):
                 except Exception as e:
                     print(e)
 
-    #резутьтат выполнения обработки одного сайта. Info – статус обработки
     def item_completed(self, results, item, info):
         if results:
             item['photos'] = [itm[1] for itm in results if itm[0]]
