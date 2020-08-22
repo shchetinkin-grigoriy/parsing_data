@@ -10,7 +10,7 @@ USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Ge
 
 ROBOTSTXT_OBEY = False
 CONCURRENT_REQUESTS = 4
-DOWNLOAD_DELAY = 3
+DOWNLOAD_DELAY = 1
 
 ITEM_PIPELINES = {
     'homework_7_lerua.leruaparser.pipelines.LeruaparserPipeline': 300,
@@ -28,5 +28,5 @@ IMAGES_THUMBS = {
     'small': (50, 50)
 }
 #фильтрация картинок по размеру(длины и ширины)
-IMAGES_MIN_HEIGHT = 110
-IMAGES_MIN_WIDTH = 110
+IMAGES_MIN_HEIGHT = 80
+IMAGES_MIN_WIDTH = 80

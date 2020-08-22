@@ -28,16 +28,20 @@ class LeruaparserPhoptosPipeline(ImagesPipeline):
         if item['photos']:
             for img in item['photos']:
                 try:
-                    yield scrapy.Request(img)	#выполняет GET запрос на ссылку
+                    request = scrapy.Request(url=img)
+                    request.meta['name'] = item['name'].replace(" ", "_")
+                    yield request
                 except Exception as e:
                     print(e)
 
     def item_completed(self, results, item, info):
         if results:
             item['photos'] = [itm[1] for itm in results if itm[0]]
+
         return item
 
     def file_path(self, request, response=None, info=None):
-        product_name = request.url.replace("https://leroymerlin.ru/product/", "").replace("/", "_")
+        product_name = request.meta['name']
         image_guid = hashlib.sha1(to_bytes(request.url)).hexdigest()
-        return 'full/%s/%s.jpg' % (product_name, image_guid)
+        path = 'full/%s/%s.jpg' % (product_name, image_guid)
+        return path

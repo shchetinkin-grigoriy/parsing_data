@@ -15,7 +15,7 @@ class LeruaruSpider(scrapy.Spider):
 
     def parse(self, response:HtmlResponse):
         items = response.css("a.plp-item__info__title::attr(href)").extract()
-        next = response.css("a.next-paginator-button").extract_first()
+        next = response.css("a.next-paginator-button::attr(href)").extract_first()
         for item in items:
             yield response.follow(item, callback=self.parse_item_async)
 
